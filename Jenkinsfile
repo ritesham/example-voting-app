@@ -3,20 +3,32 @@ pipeline {
   stages {
     stage("Set Up") {
       steps {
-        echo "Logging into the private AWS Elastic Container Registry"
         script {
           sh """
-          echo "Hello World=1"
+          docker login -u ritesham -p excellent
           """
         }
       }
     }
-    stage("Build production Image") {
+    stage("Build docker Images") {
       steps {
         echo 'Build the staging image for more tests'
         script {
           sh """
-          echo "Hello World"
+          docker image build -t ritesham/vote:v1 vote/
+          docker image build -t ritesham/worker:v1 worker/
+          docker image build -t ritesham/result:v1 result/
+          """
+        }
+      }
+    }
+    stage("Push to Docker Hub") {
+      steps {
+        script {
+          sh """
+          docker push ritesham/vote:v1
+          docker push ritesham/result:v1
+          docker push ritesham/worker:v1
           """
         }
       }

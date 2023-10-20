@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           sh """
-          sudo docker login -u ritesham -p XXXXXXXX
+          sudo docker login -u ritesham -p XXXXXXXXX
           """
         }
       }

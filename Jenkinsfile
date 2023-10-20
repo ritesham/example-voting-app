@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           sh """
-          docker login -u ritesham -p excellent
+          sudo docker login -u ritesham -p excellent
           """
         }
       }
@@ -15,9 +15,9 @@ pipeline {
         echo 'Build the staging image for more tests'
         script {
           sh """
-          docker image build -t ritesham/vote:v1 vote/
-          docker image build -t ritesham/worker:v1 worker/
-          docker image build -t ritesham/result:v1 result/
+          sudo docker image build -t ritesham/vote:v1 vote/
+          sudo docker image build -t ritesham/worker:v1 worker/
+          sudo docker image build -t ritesham/result:v1 result/
           """
         }
       }
@@ -26,9 +26,9 @@ pipeline {
       steps {
         script {
           sh """
-          docker push ritesham/vote:v1
-          docker push ritesham/result:v1
-          docker push ritesham/worker:v1
+          sudo docker push ritesham/vote:v1
+          sudo docker push ritesham/result:v1
+          sudo docker push ritesham/worker:v1
           """
         }
       }

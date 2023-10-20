@@ -10,7 +10,7 @@ pipeline {
         }
       }
     }
-    stage("Build docker Images") {
+    stage("Build docker Image") {
       steps {
         echo 'Build the staging image for more tests'
         script {
